@@ -15,13 +15,13 @@ return new class extends Migration
             $table->id();
             $table->string('username', 20);
             $table->string('password', 255);
-            $table->enum('role', ['admin','member'])->default('member');
+            $table->enum('role', ['admin','member', 'dosen'])->default('member');
             $table->rememberToken();
             $table->timestamps();
 
-            $table->index('username');
-            $table->foreign('username')->references('nip')->on('dosens');
-            $table->foreign('username')->references('npm')->on('mahasiswas');
+            // $table->index('username');
+            // $table->foreign('username')->references('nip')->on('dosens');
+            // $table->foreign('username')->references('npm')->on('mahasiswas');
         });
     }
 
