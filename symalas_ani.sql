@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 05 Okt 2023 pada 16.13
+-- Waktu pembuatan: 06 Okt 2023 pada 09.41
 -- Versi server: 10.4.27-MariaDB
 -- Versi PHP: 8.2.0
 
@@ -28,6 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `dosens` (
+  `user_id` bigint(20) UNSIGNED NOT NULL,
   `nip` varchar(20) NOT NULL,
   `nama` varchar(100) NOT NULL,
   `email` varchar(50) NOT NULL,
@@ -74,6 +75,7 @@ CREATE TABLE `jadwals` (
 --
 
 CREATE TABLE `mahasiswas` (
+  `user_id` bigint(20) UNSIGNED NOT NULL,
   `npm` varchar(20) NOT NULL,
   `nama` varchar(100) NOT NULL,
   `email` varchar(50) NOT NULL,
@@ -117,9 +119,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (1, '2014_10_12_100000_create_password_reset_tokens_table', 1),
 (2, '2019_08_19_000000_create_failed_jobs_table', 1),
 (3, '2019_12_14_000001_create_personal_access_tokens_table', 1),
-(4, '2023_09_15_143020_create_dosens_table', 1),
-(5, '2023_09_16_143110_create_mahasiswas_table', 1),
-(6, '2023_09_17_000000_create_users_table', 1),
+(4, '2023_09_14_000000_create_users_table', 1),
+(5, '2023_09_15_143020_create_dosens_table', 1),
+(6, '2023_09_16_143110_create_mahasiswas_table', 1),
 (7, '2023_09_18_143008_create_matkuls_table', 1),
 (8, '2023_10_04_142940_create_jadwals_table', 1),
 (9, '2023_10_04_142957_create_tugas_table', 1),
@@ -229,7 +231,8 @@ CREATE TABLE `verify_tugas` (
 -- Indeks untuk tabel `dosens`
 --
 ALTER TABLE `dosens`
-  ADD PRIMARY KEY (`nip`);
+  ADD UNIQUE KEY `dosens_nip_unique` (`nip`),
+  ADD KEY `dosens_user_id_foreign` (`user_id`);
 
 --
 -- Indeks untuk tabel `failed_jobs`
@@ -249,8 +252,9 @@ ALTER TABLE `jadwals`
 -- Indeks untuk tabel `mahasiswas`
 --
 ALTER TABLE `mahasiswas`
-  ADD PRIMARY KEY (`npm`),
-  ADD UNIQUE KEY `mahasiswas_email_unique` (`email`);
+  ADD UNIQUE KEY `mahasiswas_npm_unique` (`npm`),
+  ADD UNIQUE KEY `mahasiswas_email_unique` (`email`),
+  ADD KEY `mahasiswas_user_id_foreign` (`user_id`);
 
 --
 -- Indeks untuk tabel `matkuls`
@@ -297,8 +301,7 @@ ALTER TABLE `tugas`
 -- Indeks untuk tabel `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `username` (`username`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indeks untuk tabel `verify_tugas`
@@ -365,10 +368,22 @@ ALTER TABLE `verify_tugas`
 --
 
 --
+-- Ketidakleluasaan untuk tabel `dosens`
+--
+ALTER TABLE `dosens`
+  ADD CONSTRAINT `dosens_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+
+--
 -- Ketidakleluasaan untuk tabel `jadwals`
 --
 ALTER TABLE `jadwals`
   ADD CONSTRAINT `jadwals_kd_matkul_foreign` FOREIGN KEY (`kd_matkul`) REFERENCES `matkuls` (`kd_matkul`);
+
+--
+-- Ketidakleluasaan untuk tabel `mahasiswas`
+--
+ALTER TABLE `mahasiswas`
+  ADD CONSTRAINT `mahasiswas_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 
 --
 -- Ketidakleluasaan untuk tabel `matkuls`
@@ -387,13 +402,6 @@ ALTER TABLE `penggantis`
 --
 ALTER TABLE `tugas`
   ADD CONSTRAINT `tugas_kd_matkul_foreign` FOREIGN KEY (`kd_matkul`) REFERENCES `matkuls` (`kd_matkul`);
-
---
--- Ketidakleluasaan untuk tabel `users`
---
-ALTER TABLE `users`
-  ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`username`) REFERENCES `dosens` (`nip`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `users_ibfk_2` FOREIGN KEY (`username`) REFERENCES `mahasiswas` (`npm`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ketidakleluasaan untuk tabel `verify_tugas`
