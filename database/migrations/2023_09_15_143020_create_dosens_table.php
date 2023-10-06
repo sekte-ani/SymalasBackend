@@ -12,10 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('dosens', function (Blueprint $table) {
-            $table->string('nip', 20)->primary();
+            $table->unsignedBigInteger('user_id');
+            $table->string('nip', 20)->unique();
             $table->string('nama', 100);
             $table->string('email', 50);
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

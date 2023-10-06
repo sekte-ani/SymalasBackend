@@ -18,10 +18,6 @@ return new class extends Migration
             $table->enum('role', ['admin','member', 'dosen'])->default('member');
             $table->rememberToken();
             $table->timestamps();
-
-            // $table->index('username');
-            // $table->foreign('username')->references('nip')->on('dosens');
-            // $table->foreign('username')->references('npm')->on('mahasiswas');
         });
     }
 
