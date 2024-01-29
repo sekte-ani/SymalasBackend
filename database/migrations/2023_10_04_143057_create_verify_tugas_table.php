@@ -14,12 +14,12 @@ return new class extends Migration
         Schema::create('verify_tugas', function (Blueprint $table) {
             $table->id();
             $table->string('npm', 20);
-            $table->string('kd_matkul', 20);
+            $table->bigInteger('kd_tugas')->unsigned()->nullable();
             $table->enum('status', [0, 1])->default(0);
             $table->timestamps();
             
             $table->foreign('npm')->references('npm')->on('mahasiswas');
-            $table->foreign('kd_matkul')->references('kd_matkul')->on('matkuls');
+            $table->foreign('kd_tugas')->references('id')->on('tugas');
         });
     }
 
