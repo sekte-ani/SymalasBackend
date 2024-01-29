@@ -80,6 +80,48 @@ class DatabaseSeeder extends Seeder
             'judul' => 'Project Besar',
             'deskripsi' => 'Pokoknya projectnya gede aja',
             'tautan' => 'kosong',
+            'dl_tgl' => '2024-03-03',
+            'dl_jam' => '14:46:29'
+        ]);
+        Tugas::create([
+            'kd_matkul' => 'IT-011234',
+            'judul' => 'Bikin Algoritma',
+            'deskripsi' => 'An error. Cannot add foreign key constraint. No details, no reason why, nothing. Just CANNOT. At first I thought that foreign key name was too long (limit is 64 symbols, by the way), but that wasn',
+            'tautan' => 'kosong',
+            'dl_tgl' => '2024-03-03',
+            'dl_jam' => '14:46:29'
+        ]);
+        Tugas::create([
+            'kd_matkul' => 'IT-011234',
+            'judul' => 'Bikin Algoritma 2',
+            'deskripsi' => 'An error. Cannot add foreign key constraint. No details, no reason why, nothing. Just CANNOT. At first I ',
+            'tautan' => 'kosong',
+            'dl_tgl' => '2024-03-03',
+            'dl_jam' => '14:46:29'
+        ]);
+        Tugas::create([
+            'kd_matkul' => 'IT-011234',
+            'judul' => 'Bikin Algoritma 3',
+            'deskripsi' => 'nothing. Just CANNOT. At first I thought that foreign key name was too long (limit is 64 symbols, by the way), but that wasn',
+            'tautan' => 'kosong',
+            'dl_tgl' => '2024-03-03',
+            'dl_jam' => '14:46:29'
+        ]);
+        Tugas::create([
+            'kd_matkul' => 'PB-011103',
+            'judul' => 'Nyari Jurnal',
+            'deskripsi' => 'nyari jurnal yang banyak kalo bisa semua jurnal di dunia di kumpulin terus masukin ke drive terus ke ppt terus kemana mana',
+            'tautan' => 'kosong',
+            'dl_tgl' => '2024-03-03',
+            'dl_jam' => '14:46:29'
+        ]);
+        Tugas::create([
+            'kd_matkul' => 'PB-011103',
+            'judul' => 'Bikin Artikel',
+            'deskripsi' => 'Bikin artikel menarik lalu di iklanin terus nanti duitnya buat saya hahahahaaha',
+            'tautan' => 'kosong',
+            'dl_tgl' => '2024-03-03',
+            'dl_jam' => '14:46:29'
         ]);
 
     }
