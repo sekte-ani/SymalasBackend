@@ -18,6 +18,8 @@ return new class extends Migration
             $table->text('deskripsi');
             $table->text('tautan');
             $table->string('file', 255)->nullable();
+            $table->date('dl_tgl');
+            $table->time('dl_jam');
             $table->timestamps();
 
             $table->foreign('kd_matkul')->references('kd_matkul')->on('matkuls');

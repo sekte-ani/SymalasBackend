@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\StudentController;
+use App\Http\Controllers\Api\TugasController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -23,8 +24,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 Route::group(['middleware' => ['auth:sanctum']], function() {
-    Route::get('/matkul', [StudentController::class, 'Index']);
-
+    Route::get('/matkul', [TugasController::class, 'DataMatkul']);
 });
 
 
