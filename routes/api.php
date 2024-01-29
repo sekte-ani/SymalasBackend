@@ -25,6 +25,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::group(['middleware' => ['auth:sanctum']], function() {
     Route::get('/matkul', [TugasController::class, 'DataMatkul']);
+    Route::get('/matkul-done', [TugasController::class, 'DoneMatkul']);
 });
 
 
