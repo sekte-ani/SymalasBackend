@@ -13,7 +13,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/dosen', function () {
+Route::get('/Admin-dosen', function () {
     return view('admin.dataDosen.index');
 });
+Route::get('/Admin-mahasiswa', function () {
+    return view('admin.dataMhs.index');
+});
+// Route::get('/Admin-dosen', function () {
+//     return view('admin.dataDosen.index');
+// })
+// Route::get('/Admin-dosen', function () {
+//     return view('admin.dataDosen.index');
+// })
+
 
